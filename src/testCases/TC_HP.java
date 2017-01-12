@@ -1,26 +1,40 @@
 package testCases;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import pageObjects.SignupPage;
 import utils.Links;
 
 public class TC_HP extends utils.Driver{
 	private pageObjects.CommonElements commonEls;
-
-	public TC_HP(WebDriver driver) {
-		super(driver);	
-		commonEls = new pageObjects.CommonElements(driver);
-	}
+	private pageObjects.SignupPage signupEls;
 	
-	public void doTest(){
+	public TC_HP(WebDriver driver, WebDriverWait wait) {
+		super(driver, wait);	
+		commonEls = new pageObjects.CommonElements(driver, wait);
+	}	
+	
+	public boolean doTest(){
+		boolean check = false;
 		driver.get(utils.Links.homepageLink);
-		verifyFooter();		
+		check = verifyFooter();	
+		return check;
 	}
 	
-	public void verifyFooter(){
+	private boolean verifyFooter(){
 		String column3f = commonEls.getColumns3fText();
 		String column3 = commonEls.getColumns3Text();
 		String column3mid = commonEls.getColumns3midText();
 		
-		System.out.println(column3f + " " + column3 + " " + column3mid);
+		if (!column3f.equals("© Quality House 2017") || 
+				!column3.equals("More info Call us today on 1-800-000-0000") || 
+					!column3mid.equals("E-mail: info@mysite.com")){
+			return true;
+		} else {
+			return false;
+		}
+		
+		//System.out.println(column3f + " " + column3 + " " + column3mid);
 	}
 }

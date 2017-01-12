@@ -1,14 +1,8 @@
 package program;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import pageObjects.CommonElements;
-import testCases.TC_HP;
 
 public class Program {		
 	public static void main(String[] args) {
@@ -16,7 +10,7 @@ public class Program {
 		WebDriver driver = new FirefoxDriver();
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 	    		
-		testCases.TC_HP test01 = new testCases.TC_HP(driver);
+		testCases.TC_HP test01 = new testCases.TC_HP(driver,wait);
 		test01.doTest();
 
 

@@ -2,12 +2,14 @@ package utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Driver {
-	
+public class Driver {	
 	public WebDriver driver;
-
-	public Driver(WebDriver driver){
+	public WebDriverWait wait;
+	
+	public Driver(WebDriver driver, WebDriverWait wait){
 		this.driver = driver;
+		this.wait = wait;
 	}
 }

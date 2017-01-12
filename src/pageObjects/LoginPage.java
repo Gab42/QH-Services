@@ -3,40 +3,47 @@ package pageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage extends CommonElements{
-	public LoginPage(WebDriver driver) {
-		super(driver);	
+	public LoginPage(WebDriver driver, WebDriverWait wait) {
+		super(driver,wait);	
 	}
 
 	private static WebElement element = null;
 	
-	public WebElement txtBox_username (){
+	private WebElement txtBox_username (){
 		element = driver.findElement(By.name("email-login"));
 		return element;
 	}
 	
-	public WebElement txtBox_password (){
+	private WebElement txtBox_password (){
 		element = driver.findElement(By.name("password-login"));
 		return element;
 	}
 	
-	public WebElement btn_submit (){
+	private WebElement btn_submit (){
 		element = driver.findElement(By.linkText("Submit"));
 		return element;
 	}
 	
-	public void setUsername(String strUsername){
-		txtBox_password().sendKeys(strUsername);
+	private void setUsername(String strUsername){
+		wait.until(ExpectedConditions.visibilityOf(txtBox_username()));
+		txtBox_username().sendKeys(strUsername);
    }
 	
-	public void setPassword(String strPassword){
+	private void setPassword(String strPassword){
+		wait.until(ExpectedConditions.visibilityOf(txtBox_password()));
 		txtBox_password().sendKeys(strPassword);
    }
 	
-	public void clickSubmit(){
+	private void clickSubmit(){
+		wait.until(ExpectedConditions.elementToBeClickable(btn_submit()));
 		btn_submit().click();
    }
+	
+	// Public methods
 	
 	public void login(String strUsername,String strPassword){
 		setUsername(strUsername);
