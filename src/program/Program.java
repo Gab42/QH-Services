@@ -17,6 +17,7 @@ public class Program {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 	    		
 		testCases.TC_HP test01 = new testCases.TC_HP(driver);
+		test01.DoTest();
 
 
 	}	

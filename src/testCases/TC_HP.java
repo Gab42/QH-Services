@@ -1,6 +1,7 @@
 package testCases;
 
 import org.openqa.selenium.WebDriver;
+import utils.Links;
 
 public class TC_HP extends utils.Driver{
 	private pageObjects.CommonElements commonEls;
@@ -9,7 +10,12 @@ public class TC_HP extends utils.Driver{
 		super(driver);	
 		commonEls = new pageObjects.CommonElements(driver);
 	}
-
+	
+	public void DoTest(){
+		driver.get(utils.Links.homepageLink);
+		VerifyFooter();		
+	}
+	
 	public void VerifyFooter(){
 		String column3f = commonEls.getColumns3fText();
 		String column3 = commonEls.getColumns3Text();
