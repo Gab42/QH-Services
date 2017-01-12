@@ -11,37 +11,37 @@ public class LoginPage extends CommonElements{
 
 	private static WebElement element = null;
 	
-	public static WebElement txtBox_username (WebDriver driver){
+	public WebElement txtBox_username (){
 		element = driver.findElement(By.name("email-login"));
 		return element;
 	}
 	
-	public static WebElement txtBox_password (WebDriver driver){
+	public WebElement txtBox_password (){
 		element = driver.findElement(By.name("password-login"));
 		return element;
 	}
 	
-	public static WebElement btn_submit (WebDriver driver){
+	public WebElement btn_submit (){
 		element = driver.findElement(By.linkText("Submit"));
 		return element;
 	}
 	
-	public static void setUsername(WebDriver driver,String strUsername){
-		txtBox_password(driver).sendKeys(strUsername);
+	public void setUsername(String strUsername){
+		txtBox_password().sendKeys(strUsername);
    }
 	
-	public static void setPassword(WebDriver driver,String strPassword){
-		txtBox_password(driver).sendKeys(strPassword);
+	public void setPassword(String strPassword){
+		txtBox_password().sendKeys(strPassword);
    }
 	
-	public static void clickSubmit(WebDriver driver){
-		btn_submit(driver).click();
+	public void clickSubmit(){
+		btn_submit().click();
    }
 	
-	public static void login(WebDriver driver,String strUsername,String strPassword){
-		setUsername(driver,strUsername);
-		setPassword(driver,strPassword);
-		clickSubmit(driver);
+	public void login(String strUsername,String strPassword){
+		setUsername(strUsername);
+		setPassword(strPassword);
+		clickSubmit();
    }
 
 }

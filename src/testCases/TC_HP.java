@@ -11,12 +11,12 @@ public class TC_HP extends utils.Driver{
 		commonEls = new pageObjects.CommonElements(driver);
 	}
 	
-	public void DoTest(){
+	public void doTest(){
 		driver.get(utils.Links.homepageLink);
-		VerifyFooter();		
+		verifyFooter();		
 	}
 	
-	public void VerifyFooter(){
+	public void verifyFooter(){
 		String column3f = commonEls.getColumns3fText();
 		String column3 = commonEls.getColumns3Text();
 		String column3mid = commonEls.getColumns3midText();
