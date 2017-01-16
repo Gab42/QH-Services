@@ -34,7 +34,5 @@ public class TC_HP extends utils.Driver{
 		} else {
 			return false;
 		}
-		
-		//System.out.println(column3f + " " + column3 + " " + column3mid);
 	}
 }

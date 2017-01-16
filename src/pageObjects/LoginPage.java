@@ -13,17 +13,17 @@ public class LoginPage extends CommonElements{
 
 	private static WebElement element = null;
 	
-	private WebElement txtBox_username (){
+	private WebElement txtBox_username(){
 		element = driver.findElement(By.name("email-login"));
 		return element;
 	}
 	
-	private WebElement txtBox_password (){
+	private WebElement txtBox_password(){
 		element = driver.findElement(By.name("password-login"));
 		return element;
 	}
 	
-	private WebElement btn_submit (){
+	private WebElement btn_submit(){
 		element = driver.findElement(By.linkText("Submit"));
 		return element;
 	}

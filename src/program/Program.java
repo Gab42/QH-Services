@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Program {		
 	public static void main(String[] args) {
-		System.setProperty("webdriver.gecko.driver","C:\\Users\\ggeneva\\Downloads\\geckodriver-v0.12.0-win64\\geckodriver.exe");		
+		System.setProperty("webdriver.gecko.driver",utils.Links.webdriverFolder);		
 		WebDriver driver = new FirefoxDriver();
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 	    		
