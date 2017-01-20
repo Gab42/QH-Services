@@ -1,0 +1,3 @@
+.//*[@id='info-field2']/div[1]/p	~	© Quality House 2017
+.//*[@id='info-field2']/div[2]/p[2]	~	E-mail: info@mysite.com
+.//*[@id='info-field2']/div[3]/p	~	More info
