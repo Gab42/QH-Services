@@ -1,6 +1,5 @@
 package pageObjects;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -13,23 +12,17 @@ public class SignupPage extends CommonElements{
 	public SignupPage(WebDriver driver, WebDriverWait wait){
 		super(driver, wait);	
 	}
-
-	private static WebElement element = null;
-	private static List<WebElement> elements = new ArrayList<WebElement>();
 	
 	private List<WebElement> btn_signup(){
-		elements = driver.findElements(By.className("sign-as-button"));
-		return elements;
+		return driver.findElements(By.className("sign-as-button"));
 	}
 	
 	private WebElement btn_signup_cons(){
-		element = btn_signup().get(0);
-		return element;
+		return btn_signup().get(0);
 	}
 	
 	private WebElement btn_signup_client(){
-		element = btn_signup().get(1);
-		return element;
+		return btn_signup().get(1);
 	}
 	
 	// Public methods
@@ -41,7 +34,21 @@ public class SignupPage extends CommonElements{
 	
 	public void clickSignupClient(){
 		wait.until(ExpectedConditions.elementToBeClickable(btn_signup_client()));
-		btn_signup_cons().click();
+		btn_signup_client().click();
    }
+	
+	public void goToSignUpPage(){
+		super.clickRegisterButton();
+	}
+	
+	public boolean signUpConsDisplayed(){
+		wait.until(ExpectedConditions.visibilityOf(btn_signup_cons()));
+		return super.isDisplayed(btn_signup_cons());
+	}
+	
+	public boolean signUpClientDisplayed(){
+		wait.until(ExpectedConditions.visibilityOf(btn_signup_client()));
+		return super.isDisplayed(btn_signup_client());
+	}
 
 }
