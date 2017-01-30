@@ -41,7 +41,7 @@ public class CommonElements extends utils.Driver {
 	}
 
 	protected WebElement btn_profile() {
-		return driver.findElement(By.linkText("Profile"));
+		return driver.findElement(By.xpath("//a[@href='profile-page.php']"));
 	}
 
 	protected WebElement btn_myProjects() {
@@ -97,11 +97,12 @@ public class CommonElements extends utils.Driver {
 	}
 
 	public void clickLogInButton() {
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		btn_logIn().click();
 	}
 
 	public void clickLogOutButton() {
+		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		btn_logOut().click();
 	}
 
@@ -110,7 +111,6 @@ public class CommonElements extends utils.Driver {
 	}
 
 	public void clickProfileButton() {
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		btn_profile().click();
 	}
 
@@ -209,4 +209,45 @@ public class CommonElements extends utils.Driver {
 		wait.until(ExpectedConditions.visibilityOf(elementByXPath(xPath)));
 		return elementByXPath(xPath).getText();
 	}
+	
+	public boolean homeVisible(){
+		if (btn_home().isDisplayed()){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean profileVisible(){
+		if (btn_profile().isDisplayed()){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean myProjectsVisible(){
+		if (btn_myProjects().isDisplayed()){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean aboutUsVisible(){
+		if (btn_aboutUs().isDisplayed()){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean logOutVisible(){
+		if (btn_logOut().isDisplayed()){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 }

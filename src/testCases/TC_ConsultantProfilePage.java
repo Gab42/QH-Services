@@ -9,6 +9,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import utils.ReadFromFile;
@@ -34,43 +35,51 @@ public class TC_ConsultantProfilePage extends utils.Driver{
 		}
 		
 		@Rule
-		public ErrorCollector collector = new ErrorCollector();
-		
-		/*public void test_ConsProfilePage(){
-			login();
-			pageRedirect();	
-			navigationMenu();
-			profileTitle();
-		}*/
-		
-		@Test
-		public void login() {
-			TC_ConsultantProfilePage.driver.get(utils.Links.homepageLink);
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			commonEls.clickLogInButton();
-			// driver.get(utils.Links.loginLink);
-			loginPageEls.login(utils.Links.consUsername, utils.Links.consPassword);
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			commonEls.clickProfileButton();
-		}
+		public ErrorCollector collector = new ErrorCollector();	
 		
 		// TC_CPP_01
 		@Test
-		public void pageRedirect(){						
-			String URL = driver.getCurrentUrl();
-			// message, actual, expected
+		public void pageRedirect(){			
+			driver.get(utils.Links.homepageLink);
+			commonEls.clickLogInButton();
+			loginPageEls.login(utils.Links.consUsername, utils.Links.consPassword);
+			commonEls.clickProfileButton();
+			//driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+			//wait.until(ExpectedConditions.elementToBeClickable(btn_facebook()));
+			String test = consProfileEls.getProfileTitleText();
+			String URL = driver.getCurrentUrl();		
+			// message, actual, expected			
 			collector.checkThat(tcName, URL, CoreMatchers.equalTo(utils.Links.consProfileLink));
+	
+			commonEls.clickLogOutButton();		
 		}
 		
 		// TC_CPP_03
+		@Test
 		public void navigationMenu(){
-			
+			driver.get(utils.Links.homepageLink);
+			driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+			commonEls.clickLogInButton();
+			loginPageEls.login(utils.Links.consUsername, utils.Links.consPassword);
+			collector.checkThat(tcName + " home button is visible?",commonEls.homeVisible(), CoreMatchers.equalTo(true));
+			collector.checkThat(tcName + " profile button is visible?",commonEls.profileVisible(), CoreMatchers.equalTo(true));
+			collector.checkThat(tcName + " my projects button is visible?",commonEls.myProjectsVisible(), CoreMatchers.equalTo(true));
+			collector.checkThat(tcName + " about us button is visible?",commonEls.aboutUsVisible(), CoreMatchers.equalTo(true));
+			collector.checkThat(tcName + " log out button is visible?",commonEls.logOutVisible(), CoreMatchers.equalTo(true));
+			commonEls.clickLogOutButton();	
 		}
 		
+		
 		// TC_CPP_04
-		public void profileTitle(){
+		@Test
+		public void profileTitle(){	
+			TC_ConsultantProfilePage.driver.get(utils.Links.homepageLink);		
+			commonEls.clickLogInButton();
+			loginPageEls.login(utils.Links.consUsername, utils.Links.consPassword);
+			driver.get(utils.Links.consProfileLink);
 			String profileTitle = consProfileEls.getProfileTitleText();
-			Assert.assertEquals("Profile",profileTitle);
+			collector.checkThat(tcName + " profile title text is visible?",profileTitle,CoreMatchers.equalTo("Profile"));
+			commonEls.clickLogOutButton();	
 		}
 		
 		// TC_CPP_05
